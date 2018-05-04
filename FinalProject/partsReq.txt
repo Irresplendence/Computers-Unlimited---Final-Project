@@ -1,0 +1,14 @@
+--------------------------------
+First Name: Mit
+Last  Name: W
+Manufacturer: Gigabyte
+Part Name: Z279-10
+--------------------------------
+ 
+--------------------------------
+First Name: Jeff
+Last  Name: geoff
+Manufacturer: AMD
+Part Name: Bulldozer
+--------------------------------
+ 

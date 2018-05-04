@@ -1,15 +1,15 @@
-#include <iostream>
+#include <iostream>  // Libraries that are used in the project.
 #include "Utilities.h"
 #include <string>
 #include <cctype>
 #include <fstream>
 
 
-using namespace std;
-int intelP() {
+using namespace std; // Used in order to save time typing STD, etc.
+int intelP() {  // This function is a submenu of the inventory menu and is used to pull up the list of intel parts the store carries. 
 {
-	string line;
-	ifstream myfile("intelprocessors.txt");
+	string line;   // This method allows us to open the text file in order to view the list of the parts.
+	ifstream myfile("intelprocessors.txt"); 
 	if (myfile.is_open())
 	{
 		while (getline(myfile, line))
@@ -26,7 +26,7 @@ int intelP() {
 }
 }
 
-int amdP()
+int amdP()// This is the function that allows us to see the list of AMD parts we offer. The same method is used in the intel menu in order to retrieve the text list.
 {
 	{
 		string line;
@@ -46,7 +46,7 @@ int amdP()
 		return 0;
 	}
 }
-void manufacturerInv()
+void manufacturerInv() // This is the menu for the inventory that the store carries.
 {
 	char selection;
 
@@ -93,16 +93,69 @@ void manufacturerInv()
 	// Case selection with Intel / AMD parts which will bring up a list of all the current parts that are listed in a .txt file.
 }
 
-void invPart()
-{
-	// Case selection that brings up different cases, you'll select to display all parts by type. (i.e : Motherboards, CPUS, PSUs, GPUs, etc.)
-}
 
-void partRequest()
-{
-	// Place where you'll be prompted to enter which part you'd like to see in the store, requesting manufacturer type, email for when it has arrived, etc. (Use common sense if you're working this spot)
-}
 
+void partRequest() // This allows the user to enter their information that will be used to request special parts that aren't currently in the store / in stock.
+{
+	int sel1, sel2;
+	int reqNum = 0;
+	string fName, lName, manu, pName;
+
+	ofstream myfile; // We use this to give the user some context of what they need to do in order to fill out the form.
+	cout << "Hello there! Welcome to the parts request form, if you'd like to begin please enter either 1 for yes or 2 to go back to the main menu." << endl;
+	cin >> sel1;
+	if (sel1 == 1) // We found it best to use an if loop here, while there are other loops and methods to be used, this seemed to be the most straightforward at our level of understanding.
+	{
+
+		myfile.open("partsReq.txt" ,ofstream::app); // This just goes through the questions for the form. The :app is used so that it can store multiple user's information.
+		cout << "Thanks for using the form. To start I would need your first and last name." << endl;
+		cout << "Please enter your first name:" << endl;
+		cin >> fName;
+		cout << "Thank you and now your last name." << endl;
+		cin >> lName;
+		cout << "Thank you, and now, which manufactuerer were you looking to order from?" << endl;
+		cin >> manu;
+		cout << "We work with " << manu << " all the time, we'll have no troubles special ordering your part for you. What's the name of the part specifically?" << endl;
+		cin >> pName;
+		cout << "Lastly, please check over the information for any errors." << endl;
+		cout << "First Name: " << fName << endl;
+		cout << "Last  Name: " << lName << endl;
+		cout << "Manufacturer: " << manu << endl;
+		cout << "Part Name: " << pName << endl;
+
+		cout << "If everything is correct, please type 1 or 2 if it's incorrect." << endl;
+		cin >> sel2;
+		if (sel2 == 1){ // Could have used something that evaluated just true or false, but again, the if statement seemed to be the winner here.
+			
+			
+			myfile << "--------------------------------" << endl;
+			myfile << "First Name: " << fName << endl;
+			myfile << "Last  Name: " << lName << endl;
+			myfile << "Manufacturer: " << manu << endl;
+			myfile << "Part Name: " << pName << endl;
+			myfile << "--------------------------------" << endl;
+			myfile << " " << endl;
+			myfile.close(); // Closes the file and allows the user to go back to the main menu.
+
+			cout << "Thank you for ordering with us today, " << fName << " have a great day!" << endl;
+		}
+		else if (sel2 == 2)
+		{
+			cout << "We're sorry, let's try that again." << endl;
+			partRequest();
+		}
+		
+		system("pause");
+
+	} 
+
+	
+	
+	
+
+
+
+}
 void inventoryMenu() // For the Inventory
 {
 
@@ -119,14 +172,12 @@ void inventoryMenu() // For the Inventory
 		gotoxy(50, 11);
 		cout << " 1. Inventory by manufacturer\n";
 		gotoxy(50, 12);
-		cout << " 2. Inventory by Part Type\n";
+		cout << " 2. Parts request form.\n";
 		gotoxy(50, 13);
-		cout << " 3. Parts request form.\n";
+		cout << " 3. Back to The Main Menu.\n";
 		gotoxy(50, 14);
-		cout << " 4. Back to The Main Menu.\n";
-		gotoxy(50, 15);
 		cout << " ====================================\n";
-		gotoxy(50, 16);
+		gotoxy(50, 15);
 		cout << " Please select an option from above: ";
 		cin >> selection;
 		cout << endl;
@@ -138,13 +189,11 @@ void inventoryMenu() // For the Inventory
 			break;
 
 		case '2':
-			invPart();
-			break;
-		case '3':
 			partRequest();
 			break;
+		
 
-		case '4':
+		case '3':
 			return;
 
 		default: cout << selection << " is not a valid menu item.\n";
@@ -152,26 +201,40 @@ void inventoryMenu() // For the Inventory
 			cout << endl;
 		}
 
-	} while (selection != 4);
+	} while (selection != 3);
 
 }
 
-void transDate()
+int transDate() // Cleanup : Change to "trans to represent it just being an overall transaction log. 
+{
+	string line;
+	ifstream myfile("transactions.txt");
+	if (myfile.is_open())
+	{
+		while (getline(myfile, line))
+		{
+			cout << line << '\n';
+		}
+		system("pause");
+		myfile.close();
+	}
+
+	else cout << "Unable to open file";
+
+	return 0;
+}
+
+void transWeek() // DELETE
 {
 
 }
 
-void transWeek()
+void transMonth() // DELETE
 {
 
 }
 
-void transMonth()
-{
-
-}
-
-void transactions()
+void transactions() // The transactions menu allows the user to check all of the transactions that have occured over a specific amount of time.
 {
 	system("Color 2B");
 	system("CLS");
@@ -248,14 +311,14 @@ void transactions()
 
 }
 
-void contactUs()
+void contactUs() // This primarily serves as a way of contacting the main offices at C++ Daddy INC.
 {
 	cout << "If you would like to reach us, Email us at JacobMittAnthony@C++Daddy.gov \n";
 	cout << "or you can call us at 1-800-169-6996\n";
 	system("PAUSE");
 }
 
-int writeReview(){
+int writeReview(){ 
 {
 	string reviewans1, reviewans2;
 
@@ -374,17 +437,17 @@ void customerSupport()
 
 }
 
-void applicationFill()
+void applicationFill() // Jake Fill
 {
 
 }
 
-void submittedApp()
+void submittedApp()  // Jake The Snake
 {
 
 }
 
-void jobDescription()
+void jobDescription() // Snake the Jake
 {
 
 }
