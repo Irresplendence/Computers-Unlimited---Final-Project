@@ -255,13 +255,46 @@ void contactUs()
 	system("PAUSE");
 }
 
-void writeReview()
+int writeReview(){
 {
+	string reviewans1, reviewans2;
 
+	ofstream myfile("reviews.txt");
+	if (myfile.is_open())
+	{
+		cout << "Thank you for taking your time to write a review, just a few questions and you'll be right on your way!" << endl;
+		cout << "Question 1: On a scale of 1 to 5, how would you rate our store?" << endl;
+		cin >> reviewans1;
+		myfile << reviewans1;
+		cout << "Thank you! Question 2: Was there any specific part of our store you didn't enjoy or would like to see improved?" << endl;
+		cin >> reviewans2;
+		myfile << reviewans2;
+		cout << "Thanks again, and lastly, have a great day!" << endl;
+		myfile.close();
+	}
+	else cout << "Unable to open file";
+	return 0;
 }
-void readReview()
+}
+int readReview()
 {
+	{
+		string line;
+		ifstream myfile("review.txt");
+		if (myfile.is_open())
+		{
+			while (getline(myfile, line))
+			{
+				cout << line << '\n';
+			}
+			system("pause");
+			myfile.close();
+		}
 
+		else cout << "Unable to open file";
+
+		return 0;
+	}
 }
 
 void customerSupport()
@@ -431,7 +464,88 @@ void application()
 
 }
 
+int aboutUsText()
+{
+	string line;
+	ifstream myfile("aboutus.txt");
+	if (myfile.is_open())
+	{
+		while (getline(myfile, line))
+		{
+			cout << line << '\n';
+		}
+		system("pause");
+		myfile.close();
+	}
 
+	else cout << "Unable to open file";
+
+	return 0;
+}
+
+int ceo()
+{
+	string line;
+	ifstream myfile("ceo.txt");
+	if (myfile.is_open())
+	{
+		while (getline(myfile, line))
+		{
+			cout << line << '\n';
+		}
+		system("pause");
+		myfile.close();
+	}
+
+	else cout << "Unable to open file";
+
+	return 0;
+}
+
+void aboutUs()
+{
+	char selection;
+
+	do
+	{
+		system("Color 9A");
+		system("CLS");
+		gotoxy(50, 9);
+		cout << " About us\n";
+		gotoxy(50, 10);
+		cout << " ====================================\n";
+		gotoxy(50, 11);
+		cout << " 1. About us!\n"; 
+		gotoxy(50, 12);
+		cout << " 2. A picture of the current CEO. \n";
+		gotoxy(50, 13);
+		cout << " 3. Back to the Main Menu. \n";
+		gotoxy(50, 14);
+		cout << " ====================================\n";
+		gotoxy(50, 15);
+		cout << " Please select an option from above: ";
+		cin >> selection;
+		cout << endl;
+
+		switch (selection)
+		{
+		case '1':
+			aboutUsText();
+			break;
+		case '2':
+			ceo();
+			break;
+	case '3':
+			return;
+
+		default: cout << selection << " is not a valid menu item.\n";
+
+			cout << endl;
+		}
+
+	} while (selection != 2);
+
+}
 
 
 void mainMenu()
@@ -449,7 +563,7 @@ void mainMenu()
 		gotoxy(50, 10);
 		cout << " ====================================\n";
 		gotoxy(50, 11);
-		cout << " 1. Inventory\n"; // STATUS : Incomplete, secondary menus need to be added, supplementary text files, etc.
+		cout << " 1. Inventory\n"; // STATUS : Incomplete, Need to fix formatting. 
 		gotoxy(50, 12);
 		cout << " 2. Transactions Menu\n"; // STATUS : Incomplete, secondary menus need to be added, supplementary text files, etc.
 		gotoxy(50, 13);
@@ -457,7 +571,9 @@ void mainMenu()
 		gotoxy(50, 14);
 		cout << " 4. Apply for a Job\n"; // STATUS : Incomplete, secondary menus need to be added, supplementary text files, etc.
 		gotoxy(50, 15);
-		cout << " 5. Exit\n";
+		cout << " 5. About Us!\n";
+		gotoxy(50, 16);
+		cout << " 6. Exit.\n";
 		gotoxy(50, 17);
 		cout << " ====================================\n";
 		gotoxy(50, 18);
@@ -482,6 +598,9 @@ void mainMenu()
 			application();
 			break;
 		case '5':
+			aboutUs();
+			break;
+		case '6':
 			cout << "Goodbye.\n";
 			return;
 
@@ -490,7 +609,7 @@ void mainMenu()
 			cout << endl;
 		}
 
-	} while (selection != 5);
+	} while (selection != 6);
 
 
 }

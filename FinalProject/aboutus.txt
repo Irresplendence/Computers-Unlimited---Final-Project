@@ -1,0 +1,20 @@
+===============================================================================================================================
+ABOUT US : Computers Unlimited && C++ Daddy INC.
+===============================================================================================================================
+Computers unlimited is a tech company based out of New York City. What started out as a small shop run out of a garage became 
+what is known as Computers unlimited today. We provide local businesses and enthusiasts with the parts and services that are
+needed in order to get running, whether you're simply looking to upgrade your computer or outfit your business with the latest
+in tech. As of 2005, Computers unlimited was acquired by tech giant "C++ Daddy Inc." and formerly has become "C++ Daddy's Comp
+-uters Unlimited", however going simply by "C++ Daddy's computer store." Regardless of the name, the same services and part pr
+-ovisions you've come to know and love are still here to this day. 
+ _.........._
+| |C++     | |
+| |Daddy   | |
+| |        | |
+| |________| |        
+|   ______   |
+|  |    | |  |
+|__|____|_|__|
+
+COPYRIGHT © 2005 C++ DADDY , All rights reserved.  
+=============================================================================================================================== 
